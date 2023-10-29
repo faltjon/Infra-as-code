@@ -89,7 +89,7 @@ komento:
 
 ![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h1/kuvat/6-cmd.png " ")
 
-Tyhjä tiedosto "testi" luotiin. En ole varma mitä idempotentti "unless="/tmp/foo" tekee tässä.
+Tyhjä tiedosto "testi" luotiin. En ole varma mitä "unless="/tmp/foo" tekee tässä.
 
 Lähde: https://terokarvinen.com/2021/salt-run-command-locally/
 
