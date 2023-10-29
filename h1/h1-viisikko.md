@@ -129,4 +129,4 @@ Lähde: https://wiki.debian.org/MachineId
 
 **mem_total**
 
-Kertoo tietokoneen muistin määrän
+Kertoo tietokoneen muistin määrän. 3819 megatavua.
