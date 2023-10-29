@@ -83,7 +83,8 @@ Joni käyttäjä on jo valmiina eikä muutoksia tarvita.
 
 ### cmd.run - Running a Command ###
 
-En täysin ymmärtänyt tätä funktiota. Kokeilin seuraavaa komentoa:  
+En täysin ymmärtänyt tätä funktiota. Ohjeessa mainittiin "Use file, service or user instead of cmd.run". Käytin siis file.managed.  
+komento:  
 `sudo salt-call --local -l info state.single file.managed '/home/joni/testit/testi' unless="/tmp/foo"`
 
 ![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h1/kuvat/6-cmd.png " ")
