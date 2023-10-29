@@ -90,6 +90,43 @@ En täysin ymmärtänyt tätä funktiota. Kokeilin seuraavaa komentoa:
 
 Tyhjä tiedosto "testi" luotiin. En ole varma mitä idempotentti "unless="/tmp/foo" tekee tässä.
 
+Lähde: https://terokarvinen.com/2021/salt-run-command-locally/
+
 ## c) Idempotentti. Anna esimerkki idempotenssista. Aja 'salt-call --local' komentoja, analysoi tulokset, selitä miten idempotenssi ilmenee. ##
 
+Ajoin 2 komentoa  
 
+`sudo salt-call --local -l info state.single file.managed /home/joni/testit/testi` 
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h1/kuvat/7-idempotenssi.png " ")
+
+Testi tiedosto on jo olemassa, joten muutoksia ei tarvita.
+
+`sudo salt-call --local -l info state.single pkg.installed micro`  
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h1/kuvat/8-idempotenssi2.png " ")
+
+Myös micro editori oli jo asennettuna, joten sitä ei tarvitse asentaa uudelleen. 
+
+Lähde: https://terokarvinen.com/2021/salt-run-command-locally/
+
+## d) Tietoa koneesta. Kerää tietoja koneesta Saltin grains.items -tekniikalla. Poimi kolme kiinnostavaa kohtaa, näytä tulokset ('grains.item osfinger virtual') ja analysoi ne. ##
+
+Valitsin machine_id, mem_total ja ipv4
+
+Komento `sudo salt-call --local grains.item machine_id mem_total ipv4`  
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h1/kuvat/9-grains.png " ")
+
+**ipv4** 
+10.0.2.15 on virtualboxin antama IP-osoite, jolla se yhdistää internetiin isäntäkoneen kautta.  
+127.0.0.1 on localhost osoite  
+
+Lähde: https://medium.com/@fengliplatform/not-getting-10-0-2-15-on-vm-7b738d391ab2
+
+**machine_id** Tietokoneen yksilöllinen ID. Se muodostuu käyttöjärjestelmän asennuksen yhteydessä. 
+
+Lähde: https://wiki.debian.org/MachineId
+
+**mem_total**
+
+Kertoo tietokoneen muistin määrän
