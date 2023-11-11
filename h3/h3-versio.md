@@ -8,4 +8,4 @@ Aluksi loin uuden varaston painamalla githubissa + -> new repository (kuten kuva
 
 Varaston nimeksi laitoin "Winter-versio" ja kuvaukseen "Winter is cold"
 
-![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h3/kuvat/1-new.png " ")
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h3/kuvat/2-settarit.png " ")
