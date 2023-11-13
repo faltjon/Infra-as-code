@@ -72,4 +72,12 @@ Lopputuloksena winter.md ilmestyi githubin varastoon:
 
 ## c) Doh! Tee tyhmä muutos gittiin, älä tee commit:tia. Tuhoa huonot muutokset ‘git reset --hard’. Huomaa, että tässä toiminnossa ei ole peruutusnappia. ##
 
+Poistin tiedostot README.md ja winter.md `$ rm README.md; rm winter.md `  
+Sain palautettua tiedostot `$ git reset --hard` 
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h3/kuvat/16-rm.png " ")
+
+## d) Tukki. Tarkastele ja selitä varastosi lokia. Tarkista, että nimesi ja sähköpostiosoitteesi näkyy haluamallasi tavalla ja korjaa tarvittaessa. ##
+
+
 *Kesken!*
