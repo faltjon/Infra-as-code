@@ -79,5 +79,8 @@ Sain palautettua tiedostot `$ git reset --hard`
 
 ## d) Tukki. Tarkastele ja selitä varastosi lokia. Tarkista, että nimesi ja sähköpostiosoitteesi näkyy haluamallasi tavalla ja korjaa tarvittaessa. ##
 
+Git logia voi tarkastella komennolla `$ git log --patch`  
+Lokista näkee kaikki muutokset mitä varastoon on tehty. Loki kertoo myös muutoksen kellonajan ja tekijän. 
 
-*Kesken!*
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h3/kuvat/17-log1.png " ")
