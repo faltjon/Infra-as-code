@@ -84,3 +84,7 @@ Lokista näkee kaikki muutokset mitä varastoon on tehty. Loki kertoo myös muut
 
 
 ![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h3/kuvat/17-log1.png " ")
+
+## Lähteet ##
+
+https://terokarvinen.com/2023/configuration-management-2023-autumn/#h3-versio
