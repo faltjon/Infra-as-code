@@ -51,7 +51,7 @@ Kloonauksen jälkeen tarkistin vielä, että winter-versio löytyy kotihakemisto
 ![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h3/kuvat/11-ls.png " ")
 
 Seuraavaksi aloin lisäämään uutta tiedostoa winter-versio varastoon. Aluksi loin uuden tiedoston `$ micro winter.md`  
-Sitten lisäsin sen puskettavaksi `$ git add .`  
+Sitten valmistelin tiedostot committia varten `$ git add .`  
 Tein git pullin, jotta varasto olisi ajan tasalla `$ git pull`  
 Tein commitin `$ git commit` ja tässä vaiheessa unohdin kirjoittaa commit messagen, joten tein sen uudelleen viestin kanssa.
 
