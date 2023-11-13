@@ -25,3 +25,11 @@ Julkinen avain on tiedostossa id_rsa.pub ja sitä voi tarkastella komennolla `$ 
 
 ![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h3/kuvat/5-avain.png " ")
 
+Seuraavaksi kävin lisäämässä avaimen githubiin. Oma profiili -> settings -> SSH and GPK keys  
+Liitin avaimen, joka luotiin ssh-keygen komennolla ja painoin "Add SSH key"
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h3/kuvat/6-avain.png " ")
+
+Lopputuloksena avain näkyy nyt SSH-keys alla.
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h3/kuvat/7-winter.png " ")
