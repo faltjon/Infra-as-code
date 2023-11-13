@@ -70,3 +70,6 @@ Lopputuloksena winter.md ilmestyi githubin varastoon:
 ![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h3/kuvat/15-github.png " ")
 
 
+## c) Doh! Tee tyhmä muutos gittiin, älä tee commit:tia. Tuhoa huonot muutokset ‘git reset --hard’. Huomaa, että tässä toiminnossa ei ole peruutusnappia. ##
+
+*Kesken!*
