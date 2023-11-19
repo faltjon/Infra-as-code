@@ -241,3 +241,9 @@ UsePAM yes
 Kokeilin toimiiko state `$ sudo salt '*' state.apply sshd`
 
 ![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h4/kuvat/13-sshd.png " ")  
+
+Kaikki läpi!
+
+Kokeilin vielä onko portti oikeasti auki: `$ nc -vz localhost 1234`
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h4/kuvat/14-netcat.png " ")  
