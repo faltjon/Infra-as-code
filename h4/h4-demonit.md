@@ -94,9 +94,28 @@ https://terokarvinen.com/2023/salt-vagrant/#infra-as-code---your-wishes-as-a-tex
 https://docs.saltproject.io/salt/user-guide/en/latest/topics/overview.html#rules-of-yaml  
 https://docs.saltproject.io/salt/user-guide/en/latest/topics/states.html#state-modules  
 
-
+*Käytin tässä raportissa Windows 10 käyttöjärjestelmässä pyörivää virtualbox versiota 7.0.10, jossa on asennettuna 64 bittinen debian 12.1.0 versio.*
 ## a) Hello SLS! Tee Hei maailma -tila kirjoittamalla se tekstitiedostoon ##
 
+Käytin teron ohjetta apuna: https://terokarvinen.com/2023/salt-vagrant/#infra-as-code---your-wishes-as-a-text-file
 
+Aluksi loin kansiot /srv/salt ja /srv/salt/hello `$ sudo mkdir /srv/salt` ja `$ sudo mkdir /srv/salt/hello/`  
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h4/kuvat/1-kansiot.png " ")
 
+Hello state kansioon loin tiedoston init.sls, jonka sisältö näkyy kuvassa.  
+Testasin toimiiko hello state komennolla `$ sudo salt '*' state.apply hello`
 
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h4/kuvat/2-hello.png " ")
+Onnistui
+
+## b) Top. Tee top.sls niin, että tilat ajetaan automaattisesti, esim komennolla "sudo salt '*' state.apply". ##
+
+Loin uuden tiedoston top.sls, johon määritellään mitkä statet ajetaan millekkin orjalle.  `$ sudoedit top.sls`
+Kuvassa näkyy tiedoston sisältö. Kokeilin toimiiko `sudo salt '*' state.apply` komento nyt ilman hello määritystä 
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h4/kuvat/3-error.png " ")
+
+Error! top.sls tiedosto oli väärässä kansiossa. Loin sen uudelleen /srv/salt kansioon.
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h4/kuvat/4-onnistui.png " ")
+Nyt state.apply onnistui
