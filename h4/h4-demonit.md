@@ -117,5 +117,58 @@ Kuvassa näkyy tiedoston sisältö. Kokeilin toimiiko `sudo salt '*' state.apply
 
 Error! top.sls tiedosto oli väärässä kansiossa. Loin sen uudelleen /srv/salt kansioon.
 
-![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h4/kuvat/4-onnistui.png " ")
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h4/kuvat/4-onnistui.png " ")  
+
 Nyt state.apply onnistui
+
+## c) Apache. Asenna Apache, korvaa sen testisivu ja varmista, että demoni käynnistyy. ##
+
+Suoritin asennuksen ensin käsin:  
+Asensin aluksi apachen. `$ sudo apt-get install apache2`
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h4/kuvat/5-apache.png " ")  
+
+Asennuksen jälkeen testasin selaimella avautuuko apachen testisivu
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h4/kuvat/6-sivu.png " ")  
+
+Apache käynnistyi automaattisesti asennuksen jälkeen
+
+Seuraavaksi korvasin testisivun muokkaamalla tiedostoa /var/www/html/index.html `micro index.html`
+Uusi sivu tuli näkyviin selaimessa: 
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h4/kuvat/7-uusisivu.png " ")  
+
+Sitten ryhdyin automatisoimaan:
+
+Käytin tässä apuna teron ohjetta: https://terokarvinen.com/2018/apache-user-homepages-automatically-salt-package-file-service-example/
+
+Aluksi loin uuden kansion apache ja sinne init.sls tiedoston.
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h4/kuvat/8-kansio.png " ")  
+
+Loin myös html tiedoston, jonka salt hakee korvaamaan testisivun. `$ sudo micro testisivu.html`
+
+init.sls tiedoston sisältö: 
+```
+apache2:
+ pkg.installed
+/var/www/html/index.html:
+ file.managed:
+   - source: salt://apache/testisivu.html
+a2enmod userdir:
+ cmd.run:
+   - creates: /etc/apache2/mods-enabled/userdir.conf
+apache2service:
+ service.running:
+   - name: apache2
+   - watch:
+     - cmd: 'a2enmod userdir'
+```
+
+Testataan state: `$ sudo salt '*' state.apply apache`
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h4/kuvat/9-onnistui.png " ")  
+
+Kaikki läpi!
+
+Katsoin vielä selaimella, että sivu on vaihtunut:
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h4/kuvat/10-moro.png " ")  
