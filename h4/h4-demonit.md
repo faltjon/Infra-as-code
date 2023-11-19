@@ -28,4 +28,69 @@
 - Sisennykset tehdään kahdella välilyönnillä, kun määritellään arvoja
 
   ### Salt contributors: Salt states ###
-  
+*State modules:*  
+En aivan ymmärtänyt tätä kohtaa
+
+*The state SLS data structure*
+- State tiedosto sisältää seuraavat komponentit:
+- Identifier, kertoo missä kohdassa statea Identifier määritetään
+- State, state-moduulin nimi, joka sisältää funktioita esim. `pkg`
+- Function, funktio, jota kutsutaan moduulissa esim. `installed`
+- Name, state-kutsun nimi. Yleensä se on sen tiedoston nimi, jota aiotaan hallita tai paketin nimi, joka asennetaan
+- Arguments, argumentit, jotka state-funktio hyväksyy
+
+*Organizing states:*
+- Salt-state puu kuuluisi kirjoittaa mahdollisimman selkeästi niin, että toinen kehittäjä näkee nopeasti state-puun rakenteen
+
+*The top.sls file:*
+- Jotkut ympäristöt sisältävät satoja state-tiedostoja, jolloin ei ole kätevää suorittaa stateja yksitellen
+- Saltilla on kaksi toimintoa, jolla tätä helpotetaan:
+- top.sls tiedosto, jossa määritetään mitkä statet menevät kullekkin orjalle
+- `highstate`, suorittaa kaikki top.sls olevat statet yhdellä salt toiminnolla
+
+*Create the SSH state:*
+- SSH-state näyttää tältä:
+```
+install_openssh:
+  pkg.installed:
+    - name: openssh
+
+push_ssh_conf:
+  file.managed:
+    - name: /etc/ssh/ssh_config
+    - source: salt://ssh/ssh_config
+
+push_sshd_conf:
+  file.managed:
+    - name: /etc/ssh/sshd_config
+    - source: salt://ssh/sshd_config
+
+start_sshd:
+  service.running:
+    - name: sshd
+    - enable: True
+```
+*Create the Apache state:*
+- Apache state näyttää tältä:
+
+```
+implement_httpd:
+  pkg.installed:
+    - name: httpd
+
+http_conf:
+  file.managed:
+    - name: /etc/httpd/conf/httpd.conf
+    - source: salt://apache/httpd.conf
+
+start_httpd:
+  service.running:
+    - name: httpd
+    - enable: True
+```
+
+## a) Hello SLS! Tee Hei maailma -tila kirjoittamalla se tekstitiedostoon ##
+
+
+
+
