@@ -139,9 +139,9 @@ Uusi sivu tuli näkyviin selaimessa:
 
 Sitten ryhdyin automatisoimaan:
 
-Käytin tässä apuna teron ohjetta: https://terokarvinen.com/2018/apache-user-homepages-automatically-salt-package-file-service-example/
+Käytin tässä apuna teron ohjetta: https://terokarvinen.com/2018/apache-user-homepages-automatically-salt-package-file-service-example/  
 
-Aluksi loin uuden kansion apache ja sinne init.sls tiedoston.
+Aluksi loin uuden kansion apache ja sinne init.sls tiedoston.  
 ![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h4/kuvat/8-kansio.png " ")  
 
 Loin myös html tiedoston, jonka salt hakee korvaamaan testisivun. `$ sudo micro testisivu.html`
@@ -172,3 +172,72 @@ Kaikki läpi!
 Katsoin vielä selaimella, että sivu on vaihtunut:
 
 ![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h4/kuvat/10-moro.png " ")  
+
+## d) SSHouto. Lisää uusi portti, jossa SSHd kuuntelee. ##
+
+Käytin tätä lähdettä apuna: https://www.ionos.com/help/server-cloud-infrastructure/getting-started/important-security-information-for-your-server/changing-the-default-ssh-port/
+
+Aluksi muutin sshd_config tiedostosta porttinumeron 22 -> 1234 `sudo micro sshd_config`
+Sen jälkeen käynnistin sshd:n uudelleen `$ systemctl restart sshd` ja testasin yhteyttä `$ nc -vz localhost 1234`
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h4/kuvat/12-test.png " ")  
+
+Portti on nyt auki
+
+Automaatiossa käytin apuna teron ohjetta: https://terokarvinen.com/2018/04/03/pkg-file-service-control-daemons-with-salt-change-ssh-server-port/?fromSearch=karvinen%20salt%20ssh
+
+Loin uuden staten sshd `$ cd /srv/salt/` `$ sudo mkdir sshd`  
+Tähän kansioon loin 2 tiedostoa init.sls ja sshd_config
+
+init.sls sisältö:
+
+```
+openssh-server:
+ pkg.installed
+/etc/ssh/sshd_config:
+ file.managed:
+   - source: salt://sshd/sshd_config
+sshd:
+ service.running:
+   - watch:
+     - file: /etc/ssh/sshd_config
+```
+
+sshd_config sisältö:
+
+```
+# DON'T EDIT - managed file, changes will be overwritten
+Port 1234
+Protocol 2
+HostKey /etc/ssh/ssh_host_rsa_key
+HostKey /etc/ssh/ssh_host_dsa_key
+HostKey /etc/ssh/ssh_host_ecdsa_key
+HostKey /etc/ssh/ssh_host_ed25519_key
+UsePrivilegeSeparation yes
+KeyRegenerationInterval 3600
+ServerKeyBits 1024
+SyslogFacility AUTH
+LogLevel INFO
+LoginGraceTime 120
+PermitRootLogin prohibit-password
+StrictModes yes
+RSAAuthentication yes
+PubkeyAuthentication yes
+IgnoreRhosts yes
+RhostsRSAAuthentication no
+HostbasedAuthentication no
+PermitEmptyPasswords no
+ChallengeResponseAuthentication no
+X11Forwarding yes
+X11DisplayOffset 10
+PrintMotd no
+PrintLastLog yes
+TCPKeepAlive yes
+AcceptEnv LANG LC_*
+Subsystem sftp /usr/lib/openssh/sftp-server
+UsePAM yes
+```
+
+Kokeilin toimiiko state `$ sudo salt '*' state.apply sshd`
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h4/kuvat/13-sshd.png " ")  
