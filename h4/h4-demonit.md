@@ -88,6 +88,12 @@ start_httpd:
     - name: httpd
     - enable: True
 ```
+## Lähteet: ##
+
+https://terokarvinen.com/2023/salt-vagrant/#infra-as-code---your-wishes-as-a-text-file  
+https://docs.saltproject.io/salt/user-guide/en/latest/topics/overview.html#rules-of-yaml  
+https://docs.saltproject.io/salt/user-guide/en/latest/topics/states.html#state-modules  
+
 
 ## a) Hello SLS! Tee Hei maailma -tila kirjoittamalla se tekstitiedostoon ##
 
