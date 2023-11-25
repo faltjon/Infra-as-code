@@ -10,7 +10,7 @@
 Lähde: https://terokarvinen.com/2018/04/03/apache-user-homepages-automatically-salt-package-file-service-example/
 
 **Käytin tässä raportissa Windows 10 käyttöjärjestelmässä pyörivää virtualbox versiota 7.0.10, jossa on asennettuna 64 bittinen debian 12.1.0 versio.**
-## a) CSI Kerava ##
+## a) a) CSI Kerava. Näytä 'find' avulla viimeisimmäksi muokatut tiedostot /etc/-hakemistosta ja kotihakemistostasi ##
 
 Ensiksi etsin viimeksi muokatut tiedostot /etc/ hakemistosta `$ sudo find /etc/ -printf "%T+ %p\n"|sort | tail -10`
 
@@ -33,5 +33,16 @@ Lähteet:
 https://www.tutorialspoint.com/how-to-list-the-last-five-modified-files-in-linux
 https://terokarvinen.com/2018/04/03/apache-user-homepages-automatically-salt-package-file-service-example/
 
-## b) Gui2fs ##
+## b) Gui2fs. Muokkaa asetuksia jostain graafisen käyttöliittymän (GUI) ohjelmasta käyttäen ohjelman valikoita ja dialogeja. Etsi tämä asetus tiedostojärjestelmästä. ##
+
+Muutin Firefoxissa Do Not Track asetuksen "Always" tilaan. 
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h5/kuvat/3-firefox.png " ")
+
+Sen jälkeen katsoin mitkä tiedostot muuttuivat komennolla `$ find -printf "%T+ %p\n"|sort | tail -22`
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h5/kuvat/4-find.png " ")
+
+Useat tiedostot muuttuivat asetuksen myötä
+
 
