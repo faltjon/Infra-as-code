@@ -124,3 +124,38 @@ Testasin selaimessa toimiiko kotihakemisto vielä (Käytin sama kuvaa kuin aikai
 ![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h5/kuvat/14-kotihakemisto.png " ")
 
 Kotihakemisto näkyy, joten voidaan olettaa, että tila on toiminut onnistuneesti.
+
+## e) Ämpärillinen. Tee Salt-tila, joka asentaa järjestelmään kansiollisen komentoja. ##
+
+Tein 3 komentoa "greetings", "hello" ja "moro"
+
+Komentojen sisällöt:
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h5/kuvat/17-komennot.png " ")
+
+init.sls sisältö:
+
+```
+salt_commands:
+  file.managed:
+    - user: root
+    - group: root
+    - mode: "0755"
+    - names:
+      - /usr/local/bin/hello:
+        - source: salt://command/hello
+      - /usr/local/bin/greetings:
+        - source: salt://command/greetings
+      - /usr/local/bin/moro:
+        - source: salt://command/moro
+```
+
+Ajoin tilan `$ sudo salt '*' state.apply command`
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h5/kuvat/18-apply.png " ")
+
+Ja tein testit:
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h5/kuvat/19-testit.png " ")
+
+Kaikki komennot toimivat
