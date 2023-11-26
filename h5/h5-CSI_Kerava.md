@@ -45,4 +45,14 @@ Sen jälkeen katsoin mitkä tiedostot muuttuivat komennolla `$ find -printf "%T+
 
 Useat tiedostot muuttuivat asetuksen myötä
 
+## c) Komennus. Tee Salt-tila, joka asentaa järjestelmään uuden komennon. ##
 
+Aluksi tein käsin yhden komennon. Menin oikeaan kansioon `$ cd /srv/salt/` ja loin sinne uuden tilan `$ sudo mkdir command`  
+command kansioon loin komennon nimeltä "hello". Hello tiedoston sisältö kuvassa:
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h5/kuvat/5-hello.png " ")
+
+Siirsin hello tiedoston kansioon /usr/local/bin/, jotta komentoa voi käyttää missä vain. `$ sudo mv hello /usr/local/bin/`
+Tämän jälkeen muutin tiedostoon read ja execute oikeudet ryhmälle ja muille käyttäjille `$ sudo chmod go=rx hello`
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h5/kuvat/6-chmod.png " ")
