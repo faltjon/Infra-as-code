@@ -159,3 +159,9 @@ Ja tein testit:
 ![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h5/kuvat/19-testit.png " ")
 
 Kaikki komennot toimivat
+
+### Lähteet ###
+
+https://github.com/saltstack/salt/issues/52130
+https://terokarvinen.com/2018/04/03/apache-user-homepages-automatically-salt-package-file-service-example/
+https://terokarvinen.com/2023/configuration-management-2023-autumn/#h5-csi-kerava
