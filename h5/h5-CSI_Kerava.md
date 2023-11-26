@@ -76,3 +76,51 @@ Sitten ajoin command-tilan uudelleen ja testastin että hello-komento toimii:
 ![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h5/kuvat/10-tila.png " ")
 
 Kuvasta voi päätellä, että automatisointi onnistui
+
+## d) Apassi. Tee Salt-tila, joka asentaa Apachen näyttämään kotihakemistoja. ## 
+
+Aluksi tarkistin, että apache2 ei ole asennettuna `$ sudo systemctl status apache2`
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h5/kuvat/11-apache.png " ")
+
+Sitten aloin tekemään käsin. Aluksin asensin apachen `$ sudo apt-get install apache2`  
+Testasin, että testisivu näkyy selaimessa:  
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h5/kuvat/12-testisivu.png " ")
+
+Seuraavaksi annoin käyttäjille oikeudet luoda kotisivuja `$ sudo a2enmod userdir` ja käynnistin apoachen uudelleen `$ systemctl restart apache2`
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h5/kuvat/13-oikeudet.png " ")
+
+Nyt käyttäjän kotihakemisto rupesivat näkymään:
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h5/kuvat/14-kotihakemisto.png " ")
+
+Nyt rupesin automatisoimaan saman prosessin. Aloitin poistamalla apache2 `$ sudo apt remove --purge apache2`  
+Tarkistin onko apache2 oikeasti poistettu `$ sudo systemctl status apache2`
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h5/kuvat/15-remove.png " ")
+
+Loin uuden tilan "apache" `mkdir /srv/salt/apache` ja sinne tiedoston init.sls jonka sisältö on seuraava:
+
+```
+apache2:
+ pkg.installed
+a2enmod userdir:
+ cmd.run:
+   - creates: /etc/apache2/mods-enabled/userdir.conf
+apache2service:
+ service.running:
+   - name: apache2
+   - watch:
+     - cmd: 'a2enmod userdir'
+```
+Ajoin tilan komennolla `$ sudo salt '*' state.apply apache`
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h5/kuvat/16-state.png " ")
+
+Testasin selaimessa toimiiko kotihakemisto vielä (Käytin sama kuvaa kuin aikaisemmin): 
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h5/kuvat/14-kotihakemisto.png " ")
+
+Kotihakemisto näkyy, joten voidaan olettaa, että tila on toiminut onnistuneesti.
