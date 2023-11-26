@@ -56,3 +56,23 @@ Siirsin hello tiedoston kansioon /usr/local/bin/, jotta komentoa voi käyttää 
 Tämän jälkeen muutin tiedostoon read ja execute oikeudet ryhmälle ja muille käyttäjille `$ sudo chmod go=rx hello`
 
 ![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h5/kuvat/6-chmod.png " ")
+
+Testasin komentoa `$ hello`
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h5/kuvat/7-hellotest.png " ")
+
+Komento toimi odotetusti, seuraavaksi ryhdyn automatisoimaan.
+
+Loin command-tilaan uuden tiedoston "init.sls".  
+Sisältö:  
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h5/kuvat/8-init.png " ")
+
+Poistin hello-tiedoston /usr/local/bin kansiosta, jotta voidaan testata, että automatisaatio varmasti toimii.
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h5/kuvat/9-delete.png " ")
+
+Sitten ajoin command-tilan uudelleen ja testastin että hello-komento toimii:
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h5/kuvat/10-tila.png " ")
+
+Kuvasta voi päätellä, että automatisointi onnistui
