@@ -127,8 +127,7 @@ Kotihakemisto näkyy, joten voidaan olettaa, että tila on toiminut onnistuneest
 
 ## e) Ämpärillinen. Tee Salt-tila, joka asentaa järjestelmään kansiollisen komentoja. ##
 
-Tein 3 komentoa "greetings", "hello" ja "moro"
-
+Tein 2 uutta komentoa "greetings" ja "moro". Kolmantena komentona käytin vanhaa luomaani komentoa hello
 Komentojen sisällöt:
 
 ![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h5/kuvat/17-komennot.png " ")
