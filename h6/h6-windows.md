@@ -77,3 +77,11 @@ Nyt minion näkyi masterilla ja hyväksyin avaimen:
 
 ![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h6/kuvat/7-keys.png " ")
 
+Kokeilin seuraavaksi komentoja paikallisesti:  
+`cd '.\Program Files\Salt Project\Salt\'`  
+`./salt-call --local test.ping`  
+`./salt-call --local cmd.run "echo hello"`
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h6/kuvat/8-test.png " ")
+
+Salt-minion toimii odotetusti
