@@ -12,5 +12,9 @@ Raportin linkki: https://github.com/sannnir/h5-Windows
 *Halonen, Rajala ja Ollikainen 2023: Installing Windows 10 on a virtual machine*
 
 - Windows 10 levykuvan (.iso tiedosto) voi ladata osoitteesta https://www.microsoft.com/en-us/evalcenter/download-windows-10-enterprise
-- Virtualboxissa laita käyttöjärjestelmä windows 10, muistia vähintään 8GB ja prosessorien määräksi 4 tai enemmän
+- Virtualboxissa laita käyttöjärjestelmäksi windows 10 ja aseta lataamasi levykuva ISO IMAGE-kohtaan. Anna koneelle muistia vähintään 8GB ja aseta prosessorien määräksi 4 tai enemmän
 - Käynnistä windows 10 kone virtualboxissa ja seuraa asennuksen ohjeita
+
+*LSB Workgroup, The Linux Foundation 2015: Filesystem Hierarchy Standard* 
+
+- 
