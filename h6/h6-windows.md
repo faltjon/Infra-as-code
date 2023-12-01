@@ -17,4 +17,11 @@ Raportin linkki: https://github.com/sannnir/h5-Windows
 
 *LSB Workgroup, The Linux Foundation 2015: Filesystem Hierarchy Standard* 
 
-- 
+- /home = käyttäjän oma kotihakemisto
+- /etc = Sisältää järjestelmän yhteiset konfiguraatiotiedostot
+- /bin = Sisältää järjestelmän komennot, joita voi käyttää millä tahansa käyttäjällä
+
+Lähteet:  
+
+## a) Asenna Windows virtuaalikoneeseen. ##
+
