@@ -85,3 +85,26 @@ Kokeilin seuraavaksi komentoja paikallisesti:
 ![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h6/kuvat/8-test.png " ")
 
 Salt-minion toimii odotetusti
+
+## c) Kerää Windows-koneesta tietoa grains.items -toiminnolla. ##
+
+Hain tietoja prosessorien määrästä, saltin versiosta ja prosessorimallista `./salt-call --local grains.item num_cpus saltversion cpu_model`  
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h6/kuvat/9-grains.png " ")
+
+cpu_model = Intelin 11 sukupolven i5-11400F prosessori 2.6GHz kellotaajuudella  
+num_cpus = Prosessorien määrä on 12
+saltversion = Saltin versio on 3006.4
+
+d) Kokeile Saltin file -toimintoa Windowsilla.
+
+Kokeilin file-toimintoa luomalla uuden tiedoston nimeltä "hello" hakemistoon C:\tmp `salt-call --local state.single file.managed 'C:\tmp\hello'`  
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h6/kuvat/10-file.png " ")
+
+Tiedosto luotiin onnistuneesti. Kävin katsomassa kansiosta, että tiedosto on varmasti luotu:
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h6/kuvat/11-file2.png " ")
+
+Tiedosto näkyy tmp kansiossa.
+
