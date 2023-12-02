@@ -104,7 +104,27 @@ Kokeilin file-toimintoa luomalla uuden tiedoston nimeltä "hello" hakemistoon C:
 
 Tiedosto luotiin onnistuneesti. Kävin katsomassa kansiosta, että tiedosto on varmasti luotu:
 
-![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h6/kuvat/11-file2.png " ")
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h6/kuvat/10-file2.png " ")
 
 Tiedosto näkyy tmp kansiossa.
 
+## e) Kokeile jotain itsellesi uutta toimintoa Saltista Windowsilla. ##
+
+Käytin tätä lähdettä apuna: https://docs.saltproject.io/en/latest/topics/tutorials/walkthrough.html  
+
+Ajoin komennon `salt-call --local disk.usage`, joka antaa tietoa levyn käytöstä.
+
+![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h6/kuvat/11-disk.png " ")
+
+1K-blocks = tilan määrä kilotavuina  
+available = vapaa tila kilotavuina  
+capacity = käytetty tila prosentteina  
+filesystem = Tiedostojärjestelmä, josta tiedot on laskettu  
+used = käytetyn tilan määrä kilotavuina
+
+### Lähteet ###
+
+https://unix.stackexchange.com/questions/179274/what-does-1k-blocks-column-mean-in-the-output-of-df
+https://github.com/sannnir/h5-Windows  
+https://github.com/therealhalonen/PhishSticks/blob/master/notes/ollikainen/windows.md  
+https://docs.saltproject.io/en/latest/topics/tutorials/walkthrough.html  
