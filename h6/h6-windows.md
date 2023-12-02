@@ -124,7 +124,7 @@ used = käytetyn tilan määrä kilotavuina
 
 ### Lähteet ###
 
-https://unix.stackexchange.com/questions/179274/what-does-1k-blocks-column-mean-in-the-output-of-df
+https://unix.stackexchange.com/questions/179274/what-does-1k-blocks-column-mean-in-the-output-of-df  
 https://github.com/sannnir/h5-Windows  
 https://github.com/therealhalonen/PhishSticks/blob/master/notes/ollikainen/windows.md  
 https://docs.saltproject.io/en/latest/topics/tutorials/walkthrough.html  
