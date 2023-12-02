@@ -93,10 +93,10 @@ Hain tietoja prosessorien määrästä, saltin versiosta ja prosessorimallista `
 ![alt text](https://github.com/faltjon/Infra-as-code/blob/main/h6/kuvat/9-grains.png " ")
 
 cpu_model = Intelin 11 sukupolven i5-11400F prosessori 2.6GHz kellotaajuudella  
-num_cpus = Prosessorien määrä on 12
+num_cpus = Prosessorien määrä on 12  
 saltversion = Saltin versio on 3006.4
 
-d) Kokeile Saltin file -toimintoa Windowsilla.
+## d) Kokeile Saltin file -toimintoa Windowsilla. ##
 
 Kokeilin file-toimintoa luomalla uuden tiedoston nimeltä "hello" hakemistoon C:\tmp `salt-call --local state.single file.managed 'C:\tmp\hello'`  
 
