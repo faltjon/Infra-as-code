@@ -44,14 +44,15 @@ Ja poistin turhan avaimen "Joni", joka oli jäänyt testauksista.
 
 ![alt text](https://github.com/faltjon/infra-as-code/blob/main/h7/kuvat/2-poisto.png " ")¨
 
-Sitten rupesin asentamaan ohjelmia käsin. Aloitin ubuntu-koneesta asentamalla ensiksi Discordin.
+Asensin ohjelmat ensin käsin ja sitten automatisoin. Aloitin ubuntu-koneesta asentamalla Discordin, Firefoxin ja Shutterin.
 
 Asennuksessa käytetään snap paketinhallintajärjestelmää. `$ snap install discord`  
-Discordin asennus onnistui ja ohjelma avautui.  
 
 Seuraavaksi automatisoin prosessin:
 
-`$ sudo mkdir /srv/salt/discord` ja `sudo micro init.sls`
+Loin init.sls tiedostot tilojen omiin kansioihin discord, firefox ja shutter.
+
+`$ sudo mkdir /srv/salt/discord` ja `$sudo micro init.sls`
 
 Käytin tässä cmd.run, koska en löytänyt parempaa tapaa asentaa snap-paketinhallinnan kautta.  
 Komennosta on tehty idempotentti `- creates`avulla.
@@ -63,7 +64,7 @@ sudo snap install discord:
     - creates: /snap/bin/discord
 ```
 
-Siirryin firefoxin pariin. Ilmeisesti tämä snap-paketinhallinta on yleinen tapa asentaa ohjelmia ubuntulla. Firefoxin asennuksessakin suositellaan käyttämään `snap install firefox`.  
+Siirryin firefoxin pariin. Ilmeisesti tämä snap-paketinhallinta on yleinen tapa asentaa ohjelmia ubuntulla. Firefoxin asennuksessakin suositellaan käyttämään `$ snap install firefox`.  
 
 ![alt text](https://github.com/faltjon/infra-as-code/blob/main/h7/kuvat/5-firefox.png " ")¨
 
@@ -78,7 +79,14 @@ sudo snap install firefox:
     - creates: /snap/bin/firefox
 ``` 
 
+Lopuksi asensin Shutter -kuvankaappaustyökalun. Tämän asennus onnistuu suoraan apt-getin kautta. `$ sudo apt-get install shutter`
 
+init.sls
+
+```
+shutter:
+  pkg.installed
+```
 
 
 
