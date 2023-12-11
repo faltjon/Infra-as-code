@@ -170,5 +170,5 @@ Katsoin vielä paikallisesti, että ohjelmat asentuivat:
 
 ### Lopputulos ###
 
-Halusin nähdä miten saltin toiminta eroaa Ubuntun ja Windows10 välillä. Ubuntulla ohjelmien asennukset sujuivat hyvin ja se vaihe tätä projektia kesti noin 20% ajasta. Windowsilla minulla tuli paljon erilaisia ongelmia, joiden ratkaisemiseen kului paljon aikaa ja myös muutama ongelma jäi ratkaisematta. Moduulissa idempotenssi toteutui kaikkien paitsi Windows ohjelmien kanssa, koska en saanut `- creates` tarkistusta toimimaan.
+Halusin nähdä miten saltin toiminta eroaa Ubuntun ja Windows10 välillä. Ubuntulla ohjelmien asennukset sujuivat hyvin ja se vei aikaa noin 20%. Windowsilla minulla tuli paljon erilaisia ongelmia, joiden ratkaisemiseen kului paljon aikaa ja myös muutama ongelma jäi ratkaisematta. Moduulissa idempotenssi toteutui kaikkien paitsi Windows ohjelmien kanssa, koska en saanut `- creates` tarkistusta toimimaan.
 
