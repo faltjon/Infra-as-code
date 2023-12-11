@@ -8,7 +8,7 @@ RAM: 16 Gt
 Näytönohjain: NVIDIA GeForce GTX 1660 SUPER  
 
 
-Tein käsin yhden Windows-koneen ja yhden Ubuntu-koneen
+Käytin aikaisemmin luomaani Debian -konetta Masterina ja tein käsin kaksi orjaa.
 ```
 Ympäristö koostuu kahdesta orja-koneesta ja yhdestä master-koneesta
 
