@@ -56,8 +56,9 @@ Asennuksessa käytetään snap paketinhallintajärjestelmää. `$ snap install d
 
 Seuraavaksi automatisoin prosessin:
 
-Loin init.sls tiedostot tilojen omiin kansioihin discord, firefox ja shutter. Nimesin tilat käyttörjestelmän perusteella windows=w ubuntu=u 
+Nimesin tilat käyttörjestelmän perusteella windows=w ubuntu=u
 
+Tilan ja init.sls tiedoston luonti:  
 `$ sudo mkdir /srv/salt/discord_u` ja `$ sudo micro init.sls`
 
 Käytin tässä cmd.run, koska en löytänyt parempaa tapaa asentaa snap-paketinhallinnan kautta.  
@@ -74,6 +75,7 @@ Siirryin firefoxin pariin. Ilmeisesti tämä snap-paketinhallinta on yleinen tap
 
 ![alt text](https://github.com/faltjon/infra-as-code/blob/main/h7/kuvat/5-firefox.png " ")
 
+firefox_u tilan  
 init.sls:
 
 ```
@@ -85,7 +87,7 @@ sudo snap install firefox:
 
 Lopuksi asensin Shutter -kuvankaappaustyökalun. Tämän asennus onnistuu suoraan apt-getin kautta. `$ sudo apt-get install shutter`
 
-
+shutter_u tilan  
 init.sls
 
 ```
