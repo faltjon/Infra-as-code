@@ -33,7 +33,7 @@ Windows10 (64-bit)
 
 ```
 
-Projektin tarkoituksena on asentaa ohjelmat Discord, ShareX(Kuvankaappaus ohjelma) ja Firefox kahdelle orjalle. Haluan nähdä miten Saltin käyttö eroaa orjilla, joilla on Ubuntu ja Windows käyttöjärjestelmät. Alunperin oli tarkoituksena asentaa Steam, mutta sen kanssa oli liikaa ongelmia Ubuntu-koneella joten vaihdoin sen ShareX ohjelmaan. 
+Projektin tarkoituksena on asentaa molemmille orjille Discord, Firefox ja kuvankaappaustyökalu, tässä tapauksessa Sharex ja Shutter. Haluan nähdä miten Saltin käyttö eroaa orjilla, joilla on Ubuntu ja Windows käyttöjärjestelmät. Alunperin oli tarkoituksena asentaa Steam, mutta sen kanssa oli liikaa ongelmia Ubuntu-koneella joten vaihdoin sen ShareX ohjelmaan. 
 
 Koneiden asennuksen jälkeen loin niille lähiverkon 192.168.1.0.  
 Hyväksyin avaimet masterilla:  
@@ -46,7 +46,40 @@ Ja poistin turhan avaimen "Joni", joka oli jäänyt testauksista.
 
 Sitten rupesin asentamaan ohjelmia käsin. Aloitin ubuntu-koneesta asentamalla ensiksi Discordin.
 
-Asennuksessa käytetään snap paketinhallintajärjestelmää. `$ snap install discord`
+Asennuksessa käytetään snap paketinhallintajärjestelmää. `$ snap install discord`  
+Discordin asennus onnistui ja ohjelma avautui.  
+
+Seuraavaksi automatisoin prosessin:
+
+`$ sudo mkdir /srv/salt/discord` ja `sudo micro init.sls`
+
+Käytin tässä cmd.run, koska en löytänyt parempaa tapaa asentaa snap-paketinhallinnan kautta.  
+Komennosta on tehty idempotentti `- creates`avulla.
+init.sls:
+
+```
+sudo snap install discord:
+  cmd.run:
+    - creates: /snap/bin/discord
+```
+
+Siirryin firefoxin pariin. Ilmeisesti tämä snap-paketinhallinta on yleinen tapa asentaa ohjelmia ubuntulla. Firefoxin asennuksessakin suositellaan käyttämään `snap install firefox`.  
+
+![alt text](https://github.com/faltjon/infra-as-code/blob/main/h7/kuvat/5-firefox.png " ")¨
+
+Käytin taas tätä "huonoa" cmd.run tapaa saltissa.
+
+init.sls:
+
+```
+
+sudo snap install firefox:
+  cmd.run:
+    - creates: /snap/bin/firefox
+``` 
+
+
+
 
 
 ## Raportti kesken ##
