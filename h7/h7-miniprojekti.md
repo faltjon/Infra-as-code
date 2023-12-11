@@ -15,16 +15,16 @@ Ympäristö koostuu kahdesta orja-koneesta ja yhdestä master-koneesta
 Master:
 
 Debian 12.1.0 (64-bit)
-6GB muistia
+4GB muistia
 40GB tallennustilaa
 
-Orja1:
+UbuntuSlave:
 
 Ubuntu 22.04.3 (64-bit)
 4GB muistia
 25GB tallennustilaa
 
-Orja2:
+windowsV:
 
 Windows10 (64-bit)
 4GB muistia
@@ -33,7 +33,7 @@ Windows10 (64-bit)
 
 ```
 
-Projektin tarkoituksena on asentaa molemmille orjille Discord, Firefox ja kuvankaappaustyökalu, tässä tapauksessa Sharex ja Shutter. Kotikoneella minulla on käytössä Windows 10 ja haluan kokeilla miten Saltin käyttö eroaa Ubuntu ja Windows koneilla. Alunperin oli tarkoituksena asentaa Steam, mutta sen kanssa oli liikaa ongelmia Ubuntu-koneella joten vaihdoin sen ShareX ohjelmaan.
+Projektin tarkoituksena on asentaa molemmille orjille Discord, Firefox ja kuvankaappaustyökalu (ShareX ei ole saatavilla Ubuntulle, joten käytän sen tilalla Shutteria). Kotikoneella minulla on käytössä Windows 10 ja haluan kokeilla miten Saltin käyttö eroaa Ubuntu ja Windows koneilla.
 
 Koneiden asennuksen jälkeen loin niille lähiverkon 192.168.1.0.  
 Hyväksyin avaimet masterilla:  
@@ -48,16 +48,18 @@ Asensin ohjelmat ensin käsin ja sitten automatisoin. Aloitin ubuntu-koneesta as
 
 ### Ubuntu ###
 
+Asensin ensiksi Discordin
+
 Asennuksessa käytetään snap paketinhallintajärjestelmää. `$ snap install discord`  
 
 Seuraavaksi automatisoin prosessin:
 
-Loin init.sls tiedostot tilojen omiin kansioihin discord, firefox ja shutter. Nimesin tilat käyttäjärjestelmän perusteella windows=w ubuntu=u 
+Loin init.sls tiedostot tilojen omiin kansioihin discord, firefox ja shutter. Nimesin tilat käyttörjestelmän perusteella windows=w ubuntu=u 
 
 `$ sudo mkdir /srv/salt/discord_u` ja `$ sudo micro init.sls`
 
 Käytin tässä cmd.run, koska en löytänyt parempaa tapaa asentaa snap-paketinhallinnan kautta.  
-Komennosta on tehty idempotentti `- creates` avulla.
+Komennosta on tehty idempotentti `- creates` avulla. 
 init.sls:
 
 ```
@@ -105,7 +107,7 @@ install_chocolatey:
     - name: "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))"
 
 ``` 
-
+Ajoin tilan `$ sudo salt windowsV state.apply chocolatey`  
 Tarkistin vielä orjalla, että chocolatey asentui onnistuneesti:
 
 ![alt text](https://github.com/faltjon/infra-as-code/blob/main/h7/kuvat/6-choco.png " ")¨
@@ -122,7 +124,8 @@ Ja sain virheviestin:
 
 ![alt text](https://github.com/faltjon/infra-as-code/blob/main/h7/kuvat/7-error.png " ")¨
 
-Yritin pitkään löytää syytä miksi tila ei toimi. Chocolatey on kyllä asennettuna, mutta jostain syystä tila ei mene läpi. Ajan puutteen vuoksi päätin tehdä nämäkin asennukset cmd.run tyylillä.
+Yritin pitkään löytää syytä miksi tila ei toimi. Chocolatey on kyllä asennettuna vaikka powershell väittää ettei ole. Ajan puutteen vuoksi päätin tehdä nämäkin asennukset cmd.run tyylillä.  
+Discordin asennuksessa tila jäi jumiin, enkä keksinyt syytä sille, joten jätin sen asentamatta.
 
 Loin tilan nimeltä win10 `sudo mkdir win10` ja sinne init.sls tiedoston:
 
@@ -134,8 +137,21 @@ install_apps:
       - choco install firefox -y
       - choco install sharex -y
 ```
+Nyt minulla on molemmille orjille tilat valmiina. Seuraavaksi loin top.sls tiedoston, jotta voi määrätä oikeat tilat oikealla orjalle. `$ sudo micro /srv/salt/top.sls`
 
-Discordin asennuksessa tila jäi jumiin, enkä keksinyt syytä sille, joten jätin sen asentamatta.
+top.sls:
+
+```
+base:
+  'UbuntuSlave':
+    - firefox_u
+    - shutter_u
+    - discord_u
+  'windowsV':
+    - win10
+```
+
+
 
 
 ## Raportti kesken ##
