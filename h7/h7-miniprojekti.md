@@ -35,7 +35,7 @@ Windows10 (64-bit)
 
 ```
 
-Projektin tarkoituksena on asentaa molemmille orjille kolme ohjelmaa: Discord, Firefox ja kuvankaappaustyökalu (ShareX ei ole saatavilla Ubuntulle, joten käytän sen tilalla Shutteria). Kotikoneella minulla on käytössä Windows 10 ja halusin kokeilla miten Saltin käyttö eroaa Ubuntu- ja Windows koneella.
+Projektin tarkoituksena on asentaa molemmille orjille kolme ohjelmaa: Discord, Firefox ja ShareX (ShareX ei ole saatavilla Ubuntulle, joten käytän sen tilalla Shutteria). Kotikoneella minulla on käytössä Windows 10 ja halusin kokeilla miten Saltin käyttö eroaa Ubuntu- ja Windows koneella.
 
 Koneiden asennuksen jälkeen loin niille lähiverkon 192.168.1.0.  
 Hyväksyin avaimet masterilla:  
