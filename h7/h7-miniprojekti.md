@@ -1,11 +1,13 @@
 # h7 miniprojekti #
 
+### Ympäristö ###
 Host-kone:
 
 Käyttöjärjestelmä: Windows 10  
 Prosessori: 11th Gen Intel(R) Core(TM) i5-11400F @ 2.60GHz   2.59 GHz  
 RAM: 16 Gt  
 Näytönohjain: NVIDIA GeForce GTX 1660 SUPER  
+Virtualisointi: VirtualBox
 
 
 Käytin aikaisemmin luomaani Debian -konetta Masterina ja tein käsin kaksi orjaa.
