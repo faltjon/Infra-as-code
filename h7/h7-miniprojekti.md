@@ -38,11 +38,11 @@ Projektin tarkoituksena on asentaa molemmille orjille Discord, Firefox ja kuvank
 Koneiden asennuksen jälkeen loin niille lähiverkon 192.168.1.0.  
 Hyväksyin avaimet masterilla:  
 
-![alt text](https://github.com/faltjon/infra-as-code/blob/main/h7/kuvat/1-avaimet.png " ")¨
+![alt text](https://github.com/faltjon/infra-as-code/blob/main/h7/kuvat/1-avaimet.png " ")
 
 Ja poistin turhan avaimen "Joni", joka oli jäänyt testauksista.
 
-![alt text](https://github.com/faltjon/infra-as-code/blob/main/h7/kuvat/2-poisto.png " ")¨
+![alt text](https://github.com/faltjon/infra-as-code/blob/main/h7/kuvat/2-poisto.png " ")
 
 Asensin ohjelmat ensin käsin ja sitten automatisoin. Aloitin ubuntu-koneesta asentamalla Discordin, Firefoxin ja Shutterin.
 
@@ -70,9 +70,7 @@ sudo snap install discord:
 
 Siirryin firefoxin pariin. Ilmeisesti tämä snap-paketinhallinta on yleinen tapa asentaa ohjelmia ubuntulla. Firefoxin asennuksessakin suositellaan käyttämään `$ snap install firefox`.  
 
-![alt text](https://github.com/faltjon/infra-as-code/blob/main/h7/kuvat/5-firefox.png " ")¨
-
-Käytin taas tätä "huonoa" cmd.run tapaa saltissa.
+![alt text](https://github.com/faltjon/infra-as-code/blob/main/h7/kuvat/5-firefox.png " ")
 
 init.sls:
 
@@ -97,7 +95,8 @@ shutter:
 
 Siirryin nyt windows10 orjalle.  
 
-Ohjelmien asennusta varten asensin Chocolatey -paketinhallinnan. Tein sille oman tilan.
+Ohjelmien asennusta varten asensin Chocolatey -paketinhallinnan.  
+Tein sille oman tilan, joka suorittaa orjan PowerShellissä chocolatey asennus-skriptin  
 
 init.sls:
 ```
@@ -110,9 +109,9 @@ install_chocolatey:
 Ajoin tilan `$ sudo salt windowsV state.apply chocolatey`  
 Tarkistin vielä orjalla, että chocolatey asentui onnistuneesti:
 
-![alt text](https://github.com/faltjon/infra-as-code/blob/main/h7/kuvat/6-choco.png " ")¨
+![alt text](https://github.com/faltjon/infra-as-code/blob/main/h7/kuvat/6-choco.png " ")
 
-Koitin toimiiko chocolatey ja ajoin tilan:
+Kokeilin toimiiko chocolatey ja ajoin tilan:
 
 ```
 choco_pkgs:
@@ -122,21 +121,28 @@ choco_pkgs:
 ```
 Ja sain virheviestin:
 
-![alt text](https://github.com/faltjon/infra-as-code/blob/main/h7/kuvat/7-error.png " ")¨
+![alt text](https://github.com/faltjon/infra-as-code/blob/main/h7/kuvat/7-error.png " ")
 
 Yritin pitkään löytää syytä miksi tila ei toimi. Chocolatey on kyllä asennettuna vaikka powershell väittää ettei ole. Ajan puutteen vuoksi päätin tehdä nämäkin asennukset cmd.run tyylillä.  
 Discordin asennuksessa tila jäi jumiin, enkä keksinyt syytä sille, joten jätin sen asentamatta.
 
-Loin tilan nimeltä win10 `sudo mkdir win10` ja sinne init.sls tiedoston:
+Halusin ShareX:lle samat konfiguraatiot mitä käytän kotikoneella, joten kopioin HotkeysConfig.json tiedoston /srv/salt/win10 hakemistoon, josta se lähtee orjalle.
 
+Loin tilan nimeltä win10 `sudo mkdir win10` ja sinne init.sls tiedoston, jolla asennetaan firefox, sharex ja lähetetään ShareX config -tiedosto orjalle.
+
+init.sls:
 ```
-install_apps:
+win10_apps:
   cmd.run:
     - shell: powershell
     - names:
       - choco install firefox -y
       - choco install sharex -y
+  file.managed:
+      - source: salt://win10/HotkeysConfig.json
+      - name: 'C:\Users\Joni\Documents\ShareX\HotkeysConfig.json'
 ```
+
 Nyt minulla on molemmille orjille tilat valmiina. Seuraavaksi loin top.sls tiedoston, jotta voi määrätä oikeat tilat oikealla orjalle. `$ sudo micro /srv/salt/top.sls`
 
 top.sls:
@@ -151,8 +157,18 @@ base:
     - win10
 ```
 
+Lopuksi poistin molemmila orjilta kaikki asentamani ohjelmat ja testasin moduulin toimintaa `$ sudo salt '*' state.apply --state-output=terse`
+
+![alt text](https://github.com/faltjon/infra-as-code/blob/main/h7/kuvat/12-terse.png " ")
 
 
+Katsoin vielä paikallisesti, että ohjelmat asentuivat:
 
-## Raportti kesken ##
+![alt text](https://github.com/faltjon/infra-as-code/blob/main/h7/kuvat/11-ubuntu.png " ")
+
+![alt text](https://github.com/faltjon/infra-as-code/blob/main/h7/kuvat/10-win10.png " ")
+
+### Lopputulos ###
+
+Halusin nähdä miten saltin toiminta eroaa Ubuntun ja Windows10 välillä. Ubuntulla ohjelmien asennukset sujuivat hyvin ja se vaihe tätä projektia kesti noin 20% ajasta. Windowsilla minulla tuli paljon erilaisia ongelmia, joiden ratkaisemiseen kului paljon aikaa ja myös muutama ongelma jäi ratkaisematta. Moduulissa idempotenssi toteutui kaikkien paitsi Windows ohjelmien kanssa, koska en saanut `- creates` tarkistusta toimimaan.
 
