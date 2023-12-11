@@ -8,19 +8,19 @@ RAM: 16 Gt
 Näytönohjain: NVIDIA GeForce GTX 1660 SUPER  
 
 
-Tein käsin yhden Windows-koneen ja yhden Linux-koneen
+Tein käsin yhden Windows-koneen ja yhden Ubuntu-koneen
 ```
 Ympäristö koostuu kahdesta orja-koneesta ja yhdestä master-koneesta
 
 Master:
 
-Debian (64-bit)
-4GB muistia
+Debian 12.1.0 (64-bit)
+6GB muistia
 40GB tallennustilaa
 
 Orja1:
 
-Ubuntu (64-bit)
+Ubuntu 22.04.3 (64-bit)
 4GB muistia
 25GB tallennustilaa
 
@@ -33,4 +33,19 @@ Windows10 (64-bit)
 
 ```
 
-Projektin tarkoituksena on asentaa ohjelmat Discord, Steam ja Firefox kahdelle orjalle. Haluan nähdä miten Saltin käyttö eroaa orjilla, joilla on Linux ja Windows käyttöjärjestelmät.
+Projektin tarkoituksena on asentaa ohjelmat Discord, Steam + käyttäjäkohtaiset asetukset ja Firefox kahdelle orjalle. Haluan nähdä miten Saltin käyttö eroaa orjilla, joilla on Ubuntu ja Windows käyttöjärjestelmät.
+
+Koneiden asennuksen jälkeen loin niille lähiverkon 192.168.1.0.  
+Hyväksyin avaimet masterilla:  
+
+![alt text](https://github.com/faltjon/infra-as-code/blob/main/h7/kuvat/1-avaimet.png " ")¨
+
+Ja poistin turhan avaimen "Joni", joka oli jäänyt testauksista.
+
+![alt text](https://github.com/faltjon/infra-as-code/blob/main/h7/kuvat/2-poisto.png " ")¨
+
+Sitten rupesin asentamaan ohjelmia käsin. Aloitin ubuntu-orjasta ja asensin Steamin 
+
+
+## Raportti kesken ##
+
