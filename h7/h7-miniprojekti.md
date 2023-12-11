@@ -119,12 +119,13 @@ choco_pkgs:
   - name:
     - firefox  
 ```
-Ja sain virheviestin:
+Sain virheviestin:
 
 ![alt text](https://github.com/faltjon/infra-as-code/blob/main/h7/kuvat/7-error.png " ")
 
-Yritin pitkään löytää syytä miksi tila ei toimi. Chocolatey on kyllä asennettuna vaikka powershell väittää ettei ole. Ajan puutteen vuoksi päätin tehdä nämäkin asennukset cmd.run tyylillä.  
-Discordin asennuksessa tila jäi jumiin, enkä keksinyt syytä sille, joten jätin sen asentamatta.
+Yritin pitkään löytää syytä miksi tila ei toimi. Chocolatey on kyllä asennettuna vaikka powershell väittää ettei ole. En saanut chocolatey.installed toimimaan ja päätin tehdä nämäkin asennukset cmd.run tyylillä.  
+
+Käsin kaikki kolme ohjelmaa asentuivat, mutta automatisoidessa Discordin asennus jäi jumiin, joten päätin olla asentamatta sitä.
 
 Halusin ShareX:lle samat konfiguraatiot mitä käytän kotikoneella, joten kopioin HotkeysConfig.json tiedoston /srv/salt/win10 hakemistoon, josta se lähtee orjalle.
 
