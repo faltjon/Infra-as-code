@@ -129,7 +129,7 @@ Käsin kaikki kolme ohjelmaa asentuivat, mutta automatisoidessa Discordin asennu
 
 Halusin ShareX:lle samat konfiguraatiot mitä käytän kotikoneella, joten kopioin HotkeysConfig.json tiedoston /srv/salt/win10 hakemistoon, josta se lähtee orjalle.
 
-Loin tilan nimeltä win10 `sudo mkdir win10` ja sinne init.sls tiedoston, jolla asennetaan firefox, sharex ja lähetetään ShareX config -tiedosto orjalle.
+Loin tilan nimeltä win10 `sudo mkdir win10` ja sinne init.sls tiedoston, jolla asennetaan firefox ja sharex sekä lähetetään ShareX:n HotkeysConfig.json -tiedosto orjalle.
 
 init.sls:
 ```
@@ -158,7 +158,8 @@ base:
     - win10
 ```
 
-Lopuksi poistin molemmila orjilta kaikki asentamani ohjelmat ja testasin moduulin toimintaa `$ sudo salt '*' state.apply --state-output=terse`
+Lopuksi poistin molemmila orjilta kaikki asentamani ohjelmat ja testasin moduulin toimintaa ensiksi `$ sudo salt '*' state.apply`  
+ja sitten vielä lyhennettynä idempotenssin testi `$ sudo salt '*' state.apply --state-output=terse`  
 
 ![alt text](https://github.com/faltjon/infra-as-code/blob/main/h7/kuvat/12-terse.png " ")
 
