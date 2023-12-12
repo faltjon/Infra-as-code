@@ -54,8 +54,6 @@ Asensin ensiksi Discordin
 
 Asennuksessa käytetään snap paketinhallintajärjestelmää. `$ snap install discord`  
 
-Seuraavaksi automatisoin prosessin:
-
 Nimesin tilat käyttörjestelmän perusteella windows=w ubuntu=u
 
 Tilan ja init.sls tiedoston luonti:  
