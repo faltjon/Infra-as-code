@@ -83,7 +83,7 @@ sudo snap install firefox:
     - creates: /snap/bin/firefox
 ``` 
 
-Lopuksi asensin Shutter -kuvankaappaustyökalun. Tämän asennus onnistuu suoraan apt-getin kautta. `$ sudo apt-get install shutter`
+Lopuksi asensin Shutter -kuvankaappaustyökalun. Tämän asennus onnistuu suoraan apt:n kautta. `$ sudo apt-get install shutter`
 
 shutter_u tilan  
 init.sls
