@@ -1,5 +1,8 @@
 # h7 miniprojekti #
 
+
+Projektin tarkoituksena on asentaa molemmille orjille kolme ohjelmaa: Discord, Firefox ja ShareX (ShareX ei ole saatavilla Ubuntulle, joten käytän sen tilalla Shutteria). Kotikoneella minulla on käytössä Windows 10 ja halusin kokeilla miten Saltin käyttö eroaa Ubuntu- ja Windows koneella.
+
 ### Ympäristö ###
 Host-kone:
 
@@ -35,9 +38,8 @@ Windows10 (64-bit)
 
 ```
 
-Projektin tarkoituksena on asentaa molemmille orjille kolme ohjelmaa: Discord, Firefox ja ShareX (ShareX ei ole saatavilla Ubuntulle, joten käytän sen tilalla Shutteria). Kotikoneella minulla on käytössä Windows 10 ja halusin kokeilla miten Saltin käyttö eroaa Ubuntu- ja Windows koneella.
 
-Koneiden asennuksen jälkeen loin niille lähiverkon 192.168.1.0.  
+Koneiden asennuksen jälkeen loin niille lähiverkon 192.168.1.0/24  
 Hyväksyin avaimet masterilla:  
 
 ![alt text](https://github.com/faltjon/infra-as-code/blob/main/h7/kuvat/1-avaimet.png " ")
