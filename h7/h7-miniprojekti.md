@@ -10,7 +10,7 @@ Näytönohjain: NVIDIA GeForce GTX 1660 SUPER
 Virtualisointi: VirtualBox
 
 
-Käytin aikaisemmin luomaani Debian -konetta Masterina ja tein käsin kaksi orjaa.
+Käytin Masterina aikaisemmin luomaani Debian -konetta ja tein käsin kaksi orjaa.
 ```
 Ympäristö koostuu kahdesta orja-koneesta ja yhdestä master-koneesta
 
